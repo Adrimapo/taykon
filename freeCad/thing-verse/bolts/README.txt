@@ -1,1 +1,0 @@
-Poor man's openscad screw library by aubenc on Thingiverse: https://www.thingiverse.com/thing:8796
