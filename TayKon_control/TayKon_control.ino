@@ -18,13 +18,15 @@
 #define R_MOTOR_PIN 9
 #define L_MOTOR_PIN 10
 
+const bool DEBUG = true;
+
 // ESC values
 Servo R_ESC;
 Servo L_ESC;
 int esc_val;
 
 // Controller
-ControllerData TayBot_controller(CH2, CH3, CH4, CH5, CH6);
+ControllerData TayKon_controller(CH2, CH3, CH4, CH5, CH6);
 
 
 void setup(){
@@ -39,13 +41,21 @@ void setup(){
 
 void loop() {
 
-  TayBot_controller.update_values();
-  TayBot_controller.print_raw_values_table();
-  TayBot_controller.print_processed_values_table();
+  //-- Update the controller values
+  TayKon_controller.update_values();
 
-  R_ESC.write(TayBot_controller.get_Rmotor_power());
-  L_ESC.write(TayBot_controller.get_Lmotor_power());
+  //-- Debug info
+  if(DEBUG){
+    TayKon_controller.print_raw_values_table();
+    TayKon_controller.print_processed_values_table();
+  }
 
-  delay(50);
+  //-- Write controller data into ESCs
+  R_ESC.write(TayKon_controller.get_Rmotor_power());
+  L_ESC.write(TayKon_controller.get_Lmotor_power());
+
+  if(DEBUG){
+    delay(500);
+  }
 }
 
