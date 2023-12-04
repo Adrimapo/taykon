@@ -15,10 +15,12 @@
 #define CH4 18
 #define CH5 2
 #define CH6 3
-#define MOTOR_PIN 9
+#define R_MOTOR_PIN 9
+#define L_MOTOR_PIN 10
 
 // ESC values
-Servo ESC;
+Servo R_ESC;
+Servo L_ESC;
 int esc_val;
 
 // Controller
@@ -30,7 +32,8 @@ void setup(){
   Serial.begin(115200);
   
   // ESC control
-  ESC.attach(9,1000,2000);
+  R_ESC.attach(R_MOTOR_PIN,1000,2000);
+  L_ESC.attach(L_MOTOR_PIN,1000,2000);
 }
  
 
@@ -40,6 +43,9 @@ void loop() {
   TayBot_controller.print_raw_values_table();
   TayBot_controller.print_processed_values_table();
 
-  delay(500);
+  R_ESC.write(TayBot_controller.get_Rmotor_power());
+  L_ESC.write(TayBot_controller.get_Lmotor_power());
+
+  delay(50);
 }
 

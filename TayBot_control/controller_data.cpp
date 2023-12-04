@@ -79,10 +79,19 @@ void ControllerData::procces_movement_data(){
 
       case 1:
           int recived_power = channel3Value;
-          int recived_twist = channel2Value ;
-          
-          int L_vel = recived_power - recived_twist;
-          int R_vel = recived_power + recived_twist;
+          int recived_twist = channel2Value;
+          float twist_percent = 1 - (abs(recived_twist) / 100.0);
+          int L_vel = 0;
+          int R_vel = 0;
+
+          if(recived_twist < 0){
+            L_vel = recived_power * twist_percent;
+            R_vel = recived_power * (1 + (1 - twist_percent));
+          }
+          else{
+            R_vel = recived_power * twist_percent;
+            L_vel = recived_power * (1 + (1 - twist_percent));
+          }
 
           // Limit between 0 and 100 and map value to motor speed
           L_vel = clampInt(L_vel, CH3_MIN_RANGE, CH3_MAX_RANGE);
@@ -147,24 +156,6 @@ void ControllerData::print_processed_values_table() {
   Serial.println(twist);
   Serial.println("=======================================");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
