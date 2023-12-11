@@ -18,7 +18,7 @@
 #define R_MOTOR_PIN 9
 #define L_MOTOR_PIN 10
 
-const bool DEBUG = true;
+const bool DEBUG = false;
 
 // ESC values
 Servo R_ESC;
