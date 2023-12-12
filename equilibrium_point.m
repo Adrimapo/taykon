@@ -1,6 +1,6 @@
 % Constants
 g = 9.81;              % Acceleration due to gravity (m/s²)
-mass = 0.5;            % Assume a constant mass for the robot (kg)
+volume = 0.000833;     % Volume of the robot (m³)
 
 % Density range for fresh water at different temperatures
 temperature_range = 0:5:30; % Temperature in degrees Celsius
@@ -10,8 +10,8 @@ rho_freshwater = 997 * (1 - 0.00021 * (temperature_range - 20)); % Density of fr
 rho_saltwater = 1025 * (1 - 0.00023 * (temperature_range - 20)); % Density of saltwater (kg/m³)
 
 % Buoyancy force calculation for fresh water and saltwater at different temperatures
-buoyancy_freshwater = rho_freshwater * mass * g;
-buoyancy_saltwater = rho_saltwater * mass * g;
+buoyancy_freshwater = rho_freshwater * volume * g;
+buoyancy_saltwater = rho_saltwater * volume * g;
 
 % Plotting
 figure;
