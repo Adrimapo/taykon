@@ -1,4 +1,4 @@
-# Mecatronica-proyecto
+# Taykon
 
 ### Click on the image to be redirected to the project wiki
 
